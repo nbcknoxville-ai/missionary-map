@@ -352,18 +352,7 @@
                         </select>
                     </div>
 
-                    <div class="filter-item">
-                        <label for="supportFilter">Filter by Support Level</label>
-                        <select id="supportFilter">
-                            <option value="all">All Support Levels</option>
-                            <option value="Full">Fully Funded</option>
-                            <option value="Partial">Partially Funded</option>
-                            <option value="Needed">Support Needed</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="button-group">
+                   <div class="button-group">
                     <button class="btn btn-primary" onclick="applyFilters()">Apply Filters</button>
                     <button class="btn btn-secondary" onclick="resetFilters()">Reset All</button>
                 </div>
@@ -611,17 +600,12 @@
             if (ministry !== 'all') {
                 filtered = filtered.filter(m => m.ministry === ministry);
             }
-            if (support !== 'all') {
-                filtered = filtered.filter(m => m.supportLevel === support);
-            }
-
             loadMissionaries(filtered);
         }
 
         function resetFilters() {
             document.getElementById('regionFilter').value = 'all';
             document.getElementById('ministryFilter').value = 'all';
-            document.getElementById('supportFilter').value = 'all';
             loadMissionaries();
         }
 
@@ -634,4 +618,5 @@
 </body>
 
 </html>
+
 
