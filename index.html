@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Missionaries Around the World</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
+          crossorigin=""/>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .controls {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .filter-section {
+            margin-bottom: 20px;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .filter-group select {
+            padding: 10px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.3s;
+            min-width: 180px;
+        }
+
+        .filter-group select:hover {
+            border-color: #667eea;
+        }
+
+        .filter-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat-card .number {
+            font-size: 36px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-card .label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        #map {
+            height: 600px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+            border: 3px solid white;
+        }
+
+        /* Custom Popup Styling */
+        .leaflet-popup-content-wrapper {
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .missionary-popup {
+            min-width: 280px;
+            font-family: inherit;
+        }
+
+        .missionary-popup h3 {
+            margin: 0 0 12px 0;
+            color: #333;
+            font-size: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .missionary-popup img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .missionary-popup .info {
+            margin: 8px 0;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .missionary-popup .info strong {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .missionary-popup .ministry {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 10px;
+            border-radius: 6px;
+            margin: 12px 0;
+            font-size: 13px;
+            border-left: 3px solid #667eea;
+        }
+
+        .missionary-popup .support-level {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .support-full {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            color: #155724;
+        }
+
+        .support-partial {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            color: #856404;
+        }
+
+        .support-needed {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            color: #721c24;
+        }
+
+        .legend {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .legend h4 {
+            margin: 0 0 15px 0;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .legend-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-right: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 30px;
+            padding: 20px;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            #map {
+                height: 400px;
+            }
+
+            .filter-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-item {
+                width: 100%;
+            }
+
+            .filter-group select {
+                width: 100%;
+                min-width: auto;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌍 Our Missionaries Around the World</h1>
+            <p>Supporting God's work across the globe</p>
+        </div>
+        
+        <div class="controls">
+            <div class="filter-section">
+                <div class="filter-group">
+                    <div class="filter-item">
+                        <label for="regionFilter">Filter by Region</label>
+                        <select id="regionFilter">
+                            <option value="all">All Regions</option>
+                            <option value="Africa">Africa</option>
+                            <option value="Latin America">Latin America</option>
+                            <option value="North America">North America</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-item">
+                        <label for="ministryFilter">Filter by Ministry Type</label>
+                        <select id="ministryFilter">
+                            <option value="all">All Ministry Types</option>
+                            <option value="Church Planting">Church Planting</option>
+                            <option value="Native American Outreach">Native American Outreach</option>
+                            <option value="Government & Chaplaincy">Government & Chaplaincy</option>
+                            <option value="Women's Ministry">Women's Ministry</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-item">
+                        <label for="supportFilter">Filter by Support Level</label>
+                        <select id="supportFilter">
+                            <option value="all">All Support Levels</option>
+                            <option value="Full">Fully Funded</option>
+                            <option value="Partial">Partially Funded</option>
+                            <option value="Needed">Support Needed</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="applyFilters()">Apply Filters</button>
+                    <button class="btn btn-secondary" onclick="resetFilters()">Reset All</button>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="number" id="totalMissionaries">7</div>
+                    <div class="label">Missionary Families</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number" id="totalCountries">6</div>
+                    <div class="label">Countries Served</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number" id="totalRegions">3</div>
+                    <div class="label">World Regions</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="map"></div>
+
+        <div class="legend">
+            <h4>📍 Support Level Legend</h4>
+            <div class="legend-item">
+                <div class="legend-icon" style="background: #4CAF50;"></div>
+                <span><strong>Fully Funded</strong> - All support needs met</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-icon" style="background: #FFC107;"></div>
+                <span><strong>Partially Funded</strong> - Additional support needed</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-icon" style="background: #F44336;"></div>
+                <span><strong>Support Needed</strong> - Urgent support required</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Thank you for supporting our missionaries in their vital work around the world! 🙏</p>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    
+    <script>
+        // Missionary Data
+        const missionariesData = [
+            {
+                id: 1,
+                name: "Bill & Sherry Williams",
+                country: "Mexico",
+                region: "Latin America",
+                lat: 23.6345,
+                lng: -102.5528,
+                ministry: "Church Planting",
+                supportLevel: "Full",
+                photo: "https://via.placeholder.com/300x200/4CAF50/ffffff?text=Williams+Family",
+                bio: "The Williams Family serves as missionaries to Mexico, sharing the Gospel and building communities of faith throughout the region.",
+                familyName: "The Williams Family"
+            },
+            {
+                id: 2,
+                name: "Billy & Julie Ford",
+                country: "United States (Arizona)",
+                region: "North America",
+                lat: 32.2217,
+                lng: -111.9544,
+                ministry: "Native American Outreach",
+                supportLevel: "Full",
+                photo: "https://via.placeholder.com/300x200/4CAF50/ffffff?text=Ford+Family",
+                bio: "The Ford Family ministers to the Tohono O'odham Nation, bringing hope and the message of Christ to indigenous communities in Arizona.",
+                familyName: "The Ford Family"
+            },
+            {
+                id: 3,
+                name: "Dallas & Ashley Brown",
+                country: "Burkina Faso",
+                region: "Africa",
+                lat: 12.2383,
+                lng: -1.5616,
+                ministry: "Church Planting",
+                supportLevel: "Partial",
+                photo: "https://via.placeholder.com/300x200/FFC107/ffffff?text=Brown+Family",
+                bio: "The Brown Family serves in Burkina Faso, West Africa, planting churches and sharing the love of Christ in one of the world's most challenging mission fields.",
+                familyName: "The Brown Family"
+            },
+            {
+                id: 4,
+                name: "Bobby & Starla Stewart",
+                country: "United States (Washington D.C.)",
+                region: "North America",
+                lat: 38.9072,
+                lng: -77.0369,
+                ministry: "Government & Chaplaincy",
+                supportLevel: "Full",
+                photo: "https://via.placeholder.com/300x200/4CAF50/ffffff?text=Stewart+Family",
+                bio: "The Stewart Family ministers to the U.S. Government, providing spiritual guidance and support to those serving in our nation's capital.",
+                familyName: "The Stewart Family"
+            },
+            {
+                id: 5,
+                name: "Rocky & Deborah Shelton",
+                country: "United States",
+                region: "North America",
+                lat: 37.0902,
+                lng: -95.7129,
+                ministry: "Women's Ministry",
+                supportLevel: "Full",
+                photo: "https://via.placeholder.com/300x200/4CAF50/ffffff?text=Shelton+Family",
+                bio: "The Shelton Family leads Quiet Heart Women's Mission, ministering to women and providing spiritual encouragement and support across the nation.",
+                familyName: "The Shelton Family"
+            },
+            {
+                id: 6,
+                name: "Jeremy & Michelle Blanz",
+                country: "Costa Rica",
+                region: "Latin America",
+                lat: 9.7489,
+                lng: -83.7534,
+                ministry: "Church Planting",
+                supportLevel: "Partial",
+                photo: "https://via.placeholder.com/300x200/FFC107/ffffff?text=Blanz+Family",
+                bio: "The Blanz Family serves as missionaries to Costa Rica, establishing churches and discipling believers in Central America.",
+                familyName: "The Blanz Family"
+            },
+            {
+                id: 7,
+                name: "Justin & Danielle Sauder",
+                country: "Zambia",
+                region: "Africa",
+                lat: -13.1339,
+                lng: 27.8493,
+                ministry: "Church Planting",
+                supportLevel: "Needed",
+                photo: "https://via.placeholder.com/300x200/F44336/ffffff?text=Sauder+Family",
+                bio: "The Sauder Family ministers in Zambia, Africa, planting churches and sharing the Gospel in communities across this beautiful nation.",
+                familyName: "The Sauder Family"
+            }
+        ];
+
+        // Map initialization and functions
+        let map, markerLayer, markers = [];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMap();
+            loadMissionaries();
+        });
+
+        function initializeMap() {
+            map = L.map('map').setView([20, 0], 2);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 18,
+                minZoom: 2
+            }).addTo(map);
+            
+            markerLayer = L.layerGroup().addTo(map);
+        }
+
+        function getMarkerColor(supportLevel) {
+            switch(supportLevel) {
+                case 'Full': return '#4CAF50';
+                case 'Partial': return '#FFC107';
+                case 'Needed': return '#F44336';
+                default: return '#2196F3';
+            }
+        }
+
+        function createCustomIcon(supportLevel) {
+            const color = getMarkerColor(supportLevel);
+            return L.divIcon({
+                className: 'custom-marker',
+                html: `<div style="
+                    background-color: ${color};
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 50% 50% 50% 0;
+                    transform: rotate(-45deg);
+                    border: 3px solid white;
+                    box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+                "></div>`,
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            });
+        }
+
+        function createPopupContent(m) {
+            const supportClass = `support-${m.supportLevel.toLowerCase()}`;
+            return `
+                <div class="missionary-popup">
+                    <h3>${m.name}</h3>
+                    <img src="${m.photo}" alt="${m.name}">
+                    <div class="info"><strong>📍 Location:</strong> ${m.country}</div>
+                    <div class="info"><strong>🌎 Region:</strong> ${m.region}</div>
+                    <div class="ministry"><strong>✝️ Ministry:</strong> ${m.ministry}</div>
+                    <div class="info">${m.bio}</div>
+                    <span class="support-level ${supportClass}">${m.supportLevel} Support</span>
+                </div>
+            `;
+        }
+
+        function loadMissionaries(filteredData = null) {
+            markerLayer.clearLayers();
+            markers = [];
+            const data = filteredData || missionariesData;
+
+            data.forEach(m => {
+                const marker = L.marker([m.lat, m.lng], {
+                    icon: createCustomIcon(m.supportLevel)
+                });
+                
+                marker.bindPopup(createPopupContent(m), { 
+                    maxWidth: 320,
+                    className: 'custom-popup'
+                });
+                
+                marker.addTo(markerLayer);
+                markers.push({ marker, data: m });
+            });
+
+            if (data.length > 0) {
+                const group = new L.featureGroup(markers.map(m => m.marker));
+                map.fitBounds(group.getBounds().pad(0.1));
+            }
+            
+            updateStats(data);
+        }
+
+        function applyFilters() {
+            const region = document.getElementById('regionFilter').value;
+            const ministry = document.getElementById('ministryFilter').value;
+            const support = document.getElementById('supportFilter').value;
+            
+            let filtered = missionariesData;
+
+            if (region !== 'all') {
+                filtered = filtered.filter(m => m.region === region);
+            }
+            if (ministry !== 'all') {
+                filtered = filtered.filter(m => m.ministry === ministry);
+            }
+            if (support !== 'all') {
+                filtered = filtered.filter(m => m.supportLevel === support);
+            }
+
+            loadMissionaries(filtered);
+        }
+
+        function resetFilters() {
+            document.getElementById('regionFilter').value = 'all';
+            document.getElementById('ministryFilter').value = 'all';
+            document.getElementById('supportFilter').value = 'all';
+            loadMissionaries();
+        }
+
+        function updateStats(data = missionariesData) {
+            document.getElementById('totalMissionaries').textContent = data.length;
+            document.getElementById('totalCountries').textContent = new Set(data.map(m => m.country)).size;
+            document.getElementById('totalRegions').textContent = new Set(data.map(m => m.region)).size;
+        }
+    </script>
+</body>
+</html>
