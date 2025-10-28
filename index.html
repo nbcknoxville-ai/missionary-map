@@ -46,13 +46,14 @@
             opacity: 0.95;
         }
 
-        .controls {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+.controls {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    margin-top: 20px;  /* ADD THIS LINE */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
 
         .filter-section {
             margin-bottom: 20px;
@@ -164,13 +165,13 @@
             margin-top: 5px;
         }
 
-        #map {
-            height: 600px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            margin-bottom: 20px;
-            border: 3px solid white;
-        }
+       #map {
+    height: 600px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    margin-bottom: 20px;  /* Keep this */
+    border: 3px solid white;
+}
 
         /* Custom Popup Styling */
         .leaflet-popup-content-wrapper {
@@ -323,11 +324,11 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>🌍 Our Missionaries Around the World</h1>
-            <p>Supporting God's work across the globe</p>
-        </div>
-        
+<div class="header">
+    <h1>🌍 Our Missionaries Around the World</h1>
+</div>
+
+        <div id="map"></div>
         <div class="controls">
             <div class="filter-section">
                 <div class="filter-group">
@@ -373,8 +374,6 @@
                 </div>
             </div>
         </div>
-
-        <div id="map"></div>
 
         <div class="legend">
             <h4>📍 Support Level Legend</h4>
@@ -618,6 +617,7 @@
 </body>
 
 </html>
+
 
 
 
