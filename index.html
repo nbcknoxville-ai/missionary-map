@@ -365,6 +365,9 @@
     color: #764ba2;
     text-decoration: underline;
 }
+        function refreshPage() {
+    location.reload(true); // Force reload from server, not cache
+}
     </style>
 </head>
 <body>
@@ -583,15 +586,20 @@
 function createPopupContent(m) {
     const supportClass = `support-${m.supportLevel.toLowerCase()}`;
     
+    // Check if it's a valid Google Drive link
+    const hasValidPrayerLetter = m.prayerLetter && m.prayerLetter.includes('drive.google.com');
+    
     return `
         <div class="missionary-popup">
             <h3>${m.name}</h3>
             <img src="${m.photo}" alt="${m.name}">
             <div class="info"><strong>📍 Location:</strong> ${m.country}</div>
             <div class="info"><strong>🌎 Region:</strong> ${m.region}</div>
+            ${hasValidPrayerLetter ? `
             <div class="info prayer-letter-link">
-                <strong>📄 <a href="${m.prayerLetter}" target="_blank" rel="noopener noreferrer">Latest Prayer Letter</a></strong>
+                <strong>📄 <a href="#" onclick="openPdfViewer('${m.prayerLetter}', '${m.name}'); return false;">Latest Prayer Letter</a></strong>
             </div>
+            ` : ''}
             <div class="ministry"><strong>✝️ Ministry:</strong> ${m.ministry}</div>
             <div class="info">${m.bio}</div>
             <span class="support-level ${supportClass}">${m.supportLevel} Support</span>
@@ -655,10 +663,65 @@ function createPopupContent(m) {
         function refreshPage() {
     location.reload(true); // Force reload from server, not cache
 }
+        function openPdfViewer(pdfUrl, missionaryName) {
+    const overlay = document.getElementById('pdfOverlay');
+    const iframe = document.getElementById('pdfIframe');
+    const loading = document.getElementById('pdfLoading');
+    const title = document.getElementById('pdfTitle');
+    
+    // Set title
+    title.textContent = `${missionaryName} - Prayer Letter`;
+    
+    // Show overlay
+    overlay.classList.add('active');
+    
+    // Show loading
+    loading.style.display = 'block';
+    iframe.style.display = 'none';
+    
+    // Load PDF in iframe
+    iframe.src = pdfUrl;
+    
+    // Hide loading when iframe loads
+    iframe.onload = function() {
+        loading.style.display = 'none';
+        iframe.style.display = 'block';
+    };
+}
+
+function closePdfViewer() {
+    const overlay = document.getElementById('pdfOverlay');
+    const iframe = document.getElementById('pdfIframe');
+    
+    overlay.classList.remove('active');
+    iframe.src = ''; // Clear iframe
+}
+
+// Close PDF viewer when clicking outside the container
+document.addEventListener('DOMContentLoaded', function() {
+    const overlay = document.getElementById('pdfOverlay');
+    overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) {
+            closePdfViewer();
+        }
+    });
+});
     </script>
+        <!-- PDF Viewer Overlay -->
+<div id="pdfOverlay" class="pdf-overlay">
+    <div class="pdf-container">
+        <div class="pdf-header">
+            <h3 id="pdfTitle">Prayer Letter</h3>
+            <button class="pdf-close-btn" onclick="closePdfViewer()">✕ Close</button>
+        </div>
+        <div class="pdf-loading" id="pdfLoading">Loading PDF...</div>
+        <iframe id="pdfIframe" class="pdf-iframe" style="display:none;"></iframe>
+    </div>
+</div>
 </body>
 
 </html>
+
 
 
 
