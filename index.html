@@ -158,6 +158,15 @@
             background: #5a6268;
         }
 
+        .btn-refresh {
+    background: #28a745;
+    color: white;
+}
+
+.btn-refresh:hover {
+    background: #218838;
+}
+
         .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -390,10 +399,11 @@
                         </select>
                     </div>
 
-                   <div class="button-group">
-                    <button class="btn btn-primary" onclick="applyFilters()">Apply Filters</button>
-                    <button class="btn btn-secondary" onclick="resetFilters()">Reset All</button>
-                </div>
+                   <<div class="button-group">
+    <button class="btn btn-primary" onclick="applyFilters()">Apply Filters</button>
+    <button class="btn btn-secondary" onclick="resetFilters()">Reset All</button>
+    <button class="btn btn-refresh" onclick="refreshPage()">🔄 Refresh Page</button>
+</div>
             </div>
 
             <div class="stats">
@@ -642,10 +652,14 @@ function createPopupContent(m) {
             document.getElementById('totalCountries').textContent = new Set(data.map(m => m.country)).size;
             document.getElementById('totalRegions').textContent = new Set(data.map(m => m.region)).size;
         }
+        function refreshPage() {
+    location.reload(true); // Force reload from server, not cache
+}
     </script>
 </body>
 
 </html>
+
 
 
 
