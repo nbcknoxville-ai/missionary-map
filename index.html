@@ -345,6 +345,17 @@
                 grid-template-columns: 1fr;
             }
         }
+        .missionary-popup .prayer-letter-link a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.missionary-popup .prayer-letter-link a:hover {
+    color: #764ba2;
+    text-decoration: underline;
+}
     </style>
 </head>
 <body>
@@ -412,98 +423,105 @@
     <script>
                // Missionary Data
         const missionariesData = [
-            {
-                id: 1,
-                name: "Bill & Sherry Williams",
-                country: "Mexico",
-                region: "Latin America",
-                lat: 23.6345,
-                lng: -102.5528,
-                ministry: "Church Planting",
-                supportLevel: "Full",
-                photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/williams-family.jpg",
-                bio: "The Williams Family serves as missionaries to Mexico, sharing the Gospel and building communities of faith throughout the region.",
-                familyName: "The Williams Family"
-            },
-            {
-                id: 2,
-                name: "Billy & Julie Ford",
-                country: "United States (Arizona)",
-                region: "North America",
-                lat: 32.2217,
-                lng: -111.9544,
-                ministry: "Native American Outreach",
-                supportLevel: "Full",
-                photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/ford-family.jpg",
-                bio: "The Ford Family ministers to the Tohono O'odham Nation, bringing hope and the message of Christ to indigenous communities in Arizona.",
-                familyName: "The Ford Family"
-            },
-            {
-                id: 3,
-                name: "Dallas & Ashley Brown",
-                country: "Burkina Faso",
-                region: "Africa",
-                lat: 12.2383,
-                lng: -1.5616,
-                ministry: "Church Planting",
-                supportLevel: "Full",
-                photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/brown-family.jpg",
-                bio: "The Brown Family serves in Burkina Faso, West Africa, planting churches and sharing the love of Christ in one of the world's most challenging mission fields.",
-                familyName: "The Brown Family"
-            },
-            {
-                id: 4,
-                name: "Bobby & Starla Stewart",
-                country: "United States (Washington D.C.)",
-                region: "North America",
-                lat: 38.9072,
-                lng: -77.0369,
-                ministry: "Government & Chaplaincy",
-                supportLevel: "Full",
-                photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/stewart-family.jpg",
-                bio: "The Stewart Family ministers to the U.S. Government, providing spiritual guidance and support to those serving in our nation's capital.",
-                familyName: "The Stewart Family"
-            },
-            {
-                id: 5,
-                name: "Rocky & Deborah Shelton",
-                country: "United States",
-                region: "North America",
-                lat: 37.0902,
-                lng: -95.7129,
-                ministry: "Women's Ministry",
-                supportLevel: "Full",
-                photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/shelton-family.jpg",
-                bio: "The Shelton Family leads Quiet Heart Women's Mission, ministering to women and providing spiritual encouragement and support across the nation.",
-                familyName: "The Shelton Family"
-            },
-            {
-                id: 6,
-                name: "Jeremy & Michelle Blanz",
-                country: "Costa Rica",
-                region: "Latin America",
-                lat: 9.7489,
-                lng: -83.7534,
-                ministry: "Church Planting",
-                supportLevel: "Full",
-                photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/blanz-family.jpg",
-                bio: "The Blanz Family serves as missionaries to Costa Rica, establishing churches and discipling believers in Central America.",
-                familyName: "The Blanz Family"
-            },
-            {
-                id: 7,
-                name: "Justin & Danielle Sauder",
-                country: "Zambia",
-                region: "Africa",
-                lat: -13.1339,
-                lng: 27.8493,
-                ministry: "Church Planting",
-                supportLevel: "Full",
-                photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/sauder-family.jpg",
-                bio: "The Sauder Family ministers in Zambia, Africa, planting churches and sharing the Gospel in communities across this beautiful nation.",
-                familyName: "The Sauder Family"
-            }
-        ];
+    {
+        id: 1,
+        name: "Bill & Sherry Williams",
+        country: "Mexico",
+        region: "Latin America",
+        lat: 23.6345,
+        lng: -102.5528,
+        ministry: "Church Planting",
+        supportLevel: "Full",
+        photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/williams-family.jpg",
+        bio: "The Williams Family serves as missionaries to Mexico, sharing the Gospel and building communities of faith throughout the region.",
+        familyName: "The Williams Family",
+        prayerLetter: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/prayer-letters/williams-latest.pdf"
+    },
+    {
+        id: 2,
+        name: "Billy & Julie Ford",
+        country: "United States (Arizona)",
+        region: "North America",
+        lat: 32.2217,
+        lng: -111.9544,
+        ministry: "Native American Outreach",
+        supportLevel: "Full",
+        photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/ford-family.jpg",
+        bio: "The Ford Family ministers to the Tohono O'odham Nation, bringing hope and the message of Christ to indigenous communities in Arizona.",
+        familyName: "The Ford Family",
+        prayerLetter: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/prayer-letters/ford-latest.pdf"
+    },
+    {
+        id: 3,
+        name: "Dallas & Ashley Brown",
+        country: "Burkina Faso",
+        region: "Africa",
+        lat: 12.2383,
+        lng: -1.5616,
+        ministry: "Church Planting",
+        supportLevel: "Full",
+        photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/brown-family.jpg",
+        bio: "The Brown Family serves in Burkina Faso, West Africa, planting churches and sharing the love of Christ in one of the world's most challenging mission fields.",
+        familyName: "The Brown Family",
+        prayerLetter: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/prayer-letters/brown-latest.pdf"
+    },
+    {
+        id: 4,
+        name: "Bobby & Starla Stewart",
+        country: "United States (Washington D.C.)",
+        region: "North America",
+        lat: 38.9072,
+        lng: -77.0369,
+        ministry: "Government & Chaplaincy",
+        supportLevel: "Full",
+        photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/stewart-family.jpg",
+        bio: "The Stewart Family ministers to the U.S. Government, providing spiritual guidance and support to those serving in our nation's capital.",
+        familyName: "The Stewart Family",
+        prayerLetter: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/prayer-letters/stewart-latest.pdf"
+    },
+    {
+        id: 5,
+        name: "Rocky & Deborah Shelton",
+        country: "United States",
+        region: "North America",
+        lat: 37.0902,
+        lng: -95.7129,
+        ministry: "Women's Ministry",
+        supportLevel: "Full",
+        photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/shelton-family.jpg",
+        bio: "The Shelton Family leads Quiet Heart Women's Mission, ministering to women and providing spiritual encouragement and support across the nation.",
+        familyName: "The Shelton Family",
+        prayerLetter: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/prayer-letters/shelton-latest.pdf"
+    },
+    {
+        id: 6,
+        name: "Jeremy & Michelle Blanz",
+        country: "Costa Rica",
+        region: "Latin America",
+        lat: 9.7489,
+        lng: -83.7534,
+        ministry: "Church Planting",
+        supportLevel: "Full",
+        photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/blanz-family.jpg",
+        bio: "The Blanz Family serves as missionaries to Costa Rica, establishing churches and discipling believers in Central America.",
+        familyName: "The Blanz Family",
+        prayerLetter: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/prayer-letters/blanz-latest.pdf"
+    },
+    {
+        id: 7,
+        name: "Justin & Danielle Sauder",
+        country: "Zambia",
+        region: "Africa",
+        lat: -13.1339,
+        lng: 27.8493,
+        ministry: "Church Planting",
+        supportLevel: "Full",
+        photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/sauder-family.jpg",
+        bio: "The Sauder Family ministers in Zambia, Africa, planting churches and sharing the Gospel in communities across this beautiful nation.",
+        familyName: "The Sauder Family",
+        prayerLetter: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/prayer-letters/sauder-latest.pdf"
+    }
+];
         // Map initialization and functions
         let map, markerLayer, markers = [];
 
@@ -552,20 +570,23 @@
             });
         }
 
-        function createPopupContent(m) {
-            const supportClass = `support-${m.supportLevel.toLowerCase()}`;
-            return `
-                <div class="missionary-popup">
-                    <h3>${m.name}</h3>
-                    <img src="${m.photo}" alt="${m.name}">
-                    <div class="info"><strong>📍 Location:</strong> ${m.country}</div>
-                    <div class="info"><strong>🌎 Region:</strong> ${m.region}</div>
-                    <div class="ministry"><strong>✝️ Ministry:</strong> ${m.ministry}</div>
-                    <div class="info">${m.bio}</div>
-                    <span class="support-level ${supportClass}">${m.supportLevel} Support</span>
-                </div>
-            `;
-        }
+       function createPopupContent(m) {
+    const supportClass = `support-${m.supportLevel.toLowerCase()}`;
+    return `
+        <div class="missionary-popup">
+            <h3>${m.name}</h3>
+            <img src="${m.photo}" alt="${m.name}">
+            <div class="info"><strong>📍 Location:</strong> ${m.country}</div>
+            <div class="info"><strong>🌎 Region:</strong> ${m.region}</div>
+            <div class="info prayer-letter-link">
+                <strong>📄 <a href="${m.prayerLetter}" target="_blank" rel="noopener noreferrer">Latest Prayer Letter</a></strong>
+            </div>
+            <div class="ministry"><strong>✝️ Ministry:</strong> ${m.ministry}</div>
+            <div class="info">${m.bio}</div>
+            <span class="support-level ${supportClass}">${m.supportLevel} Support</span>
+        </div>
+    `;
+}
 
         function loadMissionaries(filteredData = null) {
             markerLayer.clearLayers();
@@ -624,6 +645,7 @@
 </body>
 
 </html>
+
 
 
 
