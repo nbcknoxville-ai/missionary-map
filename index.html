@@ -18,11 +18,11 @@
         }
 
         body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    padding: 20px 20px 10px 20px;
-}
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 20px 10px 20px;
+        }
 
         .container {
             max-width: 1400px;
@@ -41,44 +41,28 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .header p {
+        .header .scripture {
             font-size: 1.1em;
             opacity: 0.95;
+            font-style: italic;
+            margin-top: 10px;
+            line-height: 1.6;
         }
-        .header {
-    text-align: center;
-    color: white;
-    margin-bottom: 30px;
-}
 
-.header h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-}
+        .header .scripture em {
+            font-style: normal;
+            opacity: 0.85;
+            font-size: 0.95em;
+        }
 
-.header .scripture {
-    font-size: 1.1em;
-    opacity: 0.95;
-    font-style: italic;
-    margin-top: 10px;
-    line-height: 1.6;
-}
-
-.header .scripture em {
-    font-style: normal;
-    opacity: 0.85;
-    font-size: 0.95em;
-}
-
-.controls {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    margin-bottom: 5px;
-    margin-top: 20px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
+        .controls {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 5px;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
 
         .filter-section {
             margin-bottom: 20px;
@@ -159,53 +143,53 @@
         }
 
         .btn-refresh {
-    background: #28a745;
-    color: white;
-}
+            background: #28a745;
+            color: white;
+        }
 
-.btn-refresh:hover {
-    background: #218838;
-}
+        .btn-refresh:hover {
+            background: #218838;
+        }
 
         .stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
         }
 
         .stat-card {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    padding: 12px 15px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
 
-.stat-card .number {
-    font-size: 20px;
-    font-weight: bold;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
+        .stat-card .number {
+            font-size: 20px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-.stat-card .label {
-    font-size: 10px;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-top: 3px;
-}
+        .stat-card .label {
+            font-size: 10px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 3px;
+        }
 
-       #map {
-    height: 500px;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    margin-bottom: 20px;  /* Keep this */
-    border: 3px solid white;
-}
+        #map {
+            height: 500px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+            border: 3px solid white;
+        }
 
         /* Custom Popup Styling */
         .leaflet-popup-content-wrapper {
@@ -269,50 +253,162 @@
             color: #155724;
         }
 
-        .support-partial {
-            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
-            color: #856404;
+        .missionary-popup .prayer-letter-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
         }
 
-        .support-needed {
-            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
-            color: #721c24;
+        .missionary-popup .prayer-letter-link a:hover {
+            color: #764ba2;
+            text-decoration: underline;
         }
 
-        .legend {
-            background: white;
+        /* PDF Viewer Side Panel */
+        .pdf-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+        }
+
+        .pdf-overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .legend h4 {
-            margin: 0 0 15px 0;
-            color: #333;
+        .pdf-container {
+            width: 90%;
+            max-width: 1400px;
+            height: 85vh;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pdf-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .pdf-header h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .pdf-close-btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
             font-size: 16px;
         }
 
-        .legend-item {
+        .pdf-close-btn:hover {
+            background: #f0f0f0;
+        }
+
+        .pdf-content {
             display: flex;
-            align-items: center;
-            margin: 10px 0;
-            font-size: 14px;
+            flex: 1;
+            overflow: hidden;
         }
 
-        .legend-icon {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            margin-right: 12px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .footer {
-            text-align: center;
-            color: white;
-            margin-top: 30px;
+        .pdf-info-panel {
+            width: 350px;
             padding: 20px;
-            opacity: 0.9;
+            background: #f8f9fa;
+            border-right: 2px solid #e0e0e0;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        .pdf-info-panel h4 {
+            margin: 0 0 15px 0;
+            color: #667eea;
+            font-size: 20px;
+        }
+
+        .pdf-info-panel img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .pdf-info-item {
+            margin: 12px 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .pdf-info-item strong {
+            color: #333;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .pdf-ministry-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 12px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 3px solid #667eea;
+        }
+
+        .pdf-viewer-panel {
+            flex: 1;
+            position: relative;
+            background: #525659;
+        }
+
+        .pdf-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .pdf-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            color: white;
+            background: rgba(0,0,0,0.8);
+            padding: 20px 40px;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 1024px) {
+            .pdf-content {
+                flex-direction: column;
+            }
+            
+            .pdf-info-panel {
+                width: 100%;
+                max-height: 200px;
+                border-right: none;
+                border-bottom: 2px solid #e0e0e0;
+            }
         }
 
         @media (max-width: 768px) {
@@ -353,31 +449,28 @@
             .stats {
                 grid-template-columns: 1fr;
             }
-        }
-        .missionary-popup .prayer-letter-link a {
-    color: #667eea;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s;
-}
 
-.missionary-popup .prayer-letter-link a:hover {
-    color: #764ba2;
-    text-decoration: underline;
-}
-        function refreshPage() {
-    location.reload(true); // Force reload from server, not cache
-}
+            .pdf-container {
+                width: 95%;
+                height: 90vh;
+            }
+            
+            .pdf-info-panel {
+                max-height: 150px;
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-<div class="header">
-    <h1>🌍 Our Missionaries Around the World</h1>
-    <p class="scripture">"...Go ye into all the world, and preach the gospel to every creature." <em>-Mark 16:15b</em></p>
-</div>
+        <div class="header">
+            <h1>🌍 Our Missionaries Around the World</h1>
+            <p class="scripture">"...Go ye into all the world, and preach the gospel to every creature." <em>-Mark 16:15b</em></p>
+        </div>
 
         <div id="map"></div>
+        
         <div class="controls">
             <div class="filter-section">
                 <div class="filter-group">
@@ -401,12 +494,13 @@
                             <option value="Women's Ministry">Women's Ministry</option>
                         </select>
                     </div>
+                </div>
 
-                   <<div class="button-group">
-    <button class="btn btn-primary" onclick="applyFilters()">Apply Filters</button>
-    <button class="btn btn-secondary" onclick="resetFilters()">Reset All</button>
-    <button class="btn btn-refresh" onclick="refreshPage()">🔄 Refresh Page</button>
-</div>
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="applyFilters()">Apply Filters</button>
+                    <button class="btn btn-secondary" onclick="resetFilters()">Reset All</button>
+                    <button class="btn btn-refresh" onclick="refreshPage()">🔄 Refresh</button>
+                </div>
             </div>
 
             <div class="stats">
@@ -424,7 +518,24 @@
                 </div>
             </div>
         </div>
-        <div class="footer">
+    </div>
+
+    <!-- PDF Viewer Overlay -->
+    <div id="pdfOverlay" class="pdf-overlay">
+        <div class="pdf-container">
+            <div class="pdf-header">
+                <h3 id="pdfTitle">Prayer Letter</h3>
+                <button class="pdf-close-btn" onclick="closePdfViewer()">✕ Close</button>
+            </div>
+            <div class="pdf-content">
+                <div class="pdf-info-panel" id="pdfInfoPanel">
+                    <!-- Missionary info will be inserted here -->
+                </div>
+                <div class="pdf-viewer-panel">
+                    <div class="pdf-loading" id="pdfLoading">Loading PDF...</div>
+                    <iframe id="pdfIframe" class="pdf-iframe" style="display:none;"></iframe>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -434,113 +545,124 @@
             crossorigin=""></script>
     
     <script>
-               // Missionary Data
-      const missionariesData = [
-    {
-        id: 1,
-        name: "Bill & Sherry Williams",
-        country: "Mexico",
-        region: "Latin America",
-        lat: 23.6345,
-        lng: -102.5528,
-        ministry: "Church Planting",
-        supportLevel: "Full",
-        photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/williams-family.jpg",
-        bio: "The Williams Family serves as missionaries to Mexico, sharing the Gospel and building communities of faith throughout the region.",
-        familyName: "The Williams Family",
-        prayerLetter: "https://github.com/nbcknoxville-ai/missionary-map/blob/main/prayer-letters/williams-latest.pdf"
-    },
-    {
-        id: 2,
-        name: "Billy & Julie Ford",
-        country: "United States (Arizona)",
-        region: "North America",
-        lat: 32.2217,
-        lng: -111.9544,
-        ministry: "Native American Outreach",
-        supportLevel: "Full",
-        photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/ford-family.jpg",
-        bio: "The Ford Family ministers to the Tohono O'odham Nation, bringing hope and the message of Christ to indigenous communities in Arizona.",
-        familyName: "The Ford Family",
-        prayerLetter: "https://drive.google.com/file/d/1cmk_1VGjSLPsPv65NTxxMq4Oi1LP6agC/preview"
-    },
-    {
-        id: 3,
-        name: "Dallas & Ashley Brown",
-        country: "Burkina Faso",
-        region: "Africa",
-        lat: 12.2383,
-        lng: -1.5616,
-        ministry: "Church Planting",
-        supportLevel: "Full",
-        photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/brown-family.jpg",
-        bio: "The Brown Family serves in Burkina Faso, West Africa, planting churches and sharing the love of Christ in one of the world's most challenging mission fields.",
-        familyName: "The Brown Family",
-        prayerLetter: "https://github.com/nbcknoxville-ai/missionary-map/blob/main/prayer-letters/brown-latest.pdf"
-    },
-    {
-        id: 4,
-        name: "Bobby & Starla Stewart",
-        country: "United States (Washington D.C.)",
-        region: "North America",
-        lat: 38.9072,
-        lng: -77.0369,
-        ministry: "Government & Chaplaincy",
-        supportLevel: "Full",
-        photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/stewart-family.jpg",
-        bio: "The Stewart Family ministers to the U.S. Government, providing spiritual guidance and support to those serving in our nation's capital.",
-        familyName: "The Stewart Family",
-        prayerLetter: "https://github.com/nbcknoxville-ai/missionary-map/blob/main/prayer-letters/stewart-latest.pdf"
-    },
-    {
-        id: 5,
-        name: "Rocky & Deborah Shelton",
-        country: "United States",
-        region: "North America",
-        lat: 37.0902,
-        lng: -95.7129,
-        ministry: "Women's Ministry",
-        supportLevel: "Full",
-        photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/shelton-family.jpg",
-        bio: "The Shelton Family leads Quiet Heart Women's Mission, ministering to women and providing spiritual encouragement and support across the nation.",
-        familyName: "The Shelton Family",
-        prayerLetter: "https://github.com/nbcknoxville-ai/missionary-map/blob/main/prayer-letters/shelton-latest.pdf"
-    },
-    {
-        id: 6,
-        name: "Jeremy & Michelle Blanz",
-        country: "Costa Rica",
-        region: "Latin America",
-        lat: 9.7489,
-        lng: -83.7534,
-        ministry: "Church Planting",
-        supportLevel: "Full",
-        photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/blanz-family.jpg",
-        bio: "The Blanz Family serves as missionaries to Costa Rica, establishing churches and discipling believers in Central America.",
-        familyName: "The Blanz Family",
-        prayerLetter: "https://github.com/nbcknoxville-ai/missionary-map/blob/main/prayer-letters/blanz-latest.pdf"
-    },
-    {
-        id: 7,
-        name: "Justin & Danielle Sauder",
-        country: "Zambia",
-        region: "Africa",
-        lat: -13.1339,
-        lng: 27.8493,
-        ministry: "Church Planting",
-        supportLevel: "Full",
-        photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/sauder-family.jpg",
-        bio: "The Sauder Family ministers in Zambia, Africa, planting churches and sharing the Gospel in communities across this beautiful nation.",
-        familyName: "The Sauder Family",
-        prayerLetter: "https://github.com/nbcknoxville-ai/missionary-map/blob/main/prayer-letters/sauder-latest.pdf"
-    }
-];
+        // Missionary Data
+        const missionariesData = [
+            {
+                id: 1,
+                name: "Bill & Sherry Williams",
+                country: "Mexico",
+                region: "Latin America",
+                lat: 23.6345,
+                lng: -102.5528,
+                ministry: "Church Planting",
+                supportLevel: "Full",
+                photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/williams-family.jpg",
+                bio: "The Williams Family serves as missionaries to Mexico, sharing the Gospel and building communities of faith throughout the region.",
+                familyName: "The Williams Family",
+                prayerLetter: "https://github.com/nbcknoxville-ai/missionary-map/blob/main/prayer-letters/williams-latest.pdf"
+            },
+            {
+                id: 2,
+                name: "Billy & Julie Ford",
+                country: "United States (Arizona)",
+                region: "North America",
+                lat: 32.2217,
+                lng: -111.9544,
+                ministry: "Native American Outreach",
+                supportLevel: "Full",
+                photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/ford-family.jpg",
+                bio: "The Ford Family ministers to the Tohono O'odham Nation, bringing hope and the message of Christ to indigenous communities in Arizona.",
+                familyName: "The Ford Family",
+                prayerLetter: "https://drive.google.com/file/d/1cmk_1VGjSLPsPv65NTxxMq4Oi1LP6agC/preview"
+            },
+            {
+                id: 3,
+                name: "Dallas & Ashley Brown",
+                country: "Burkina Faso",
+                region: "Africa",
+                lat: 12.2383,
+                lng: -1.5616,
+                ministry: "Church Planting",
+                supportLevel: "Full",
+                photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/brown-family.jpg",
+                bio: "The Brown Family serves in Burkina Faso, West Africa, planting churches and sharing the love of Christ in one of the world's most challenging mission fields.",
+                familyName: "The Brown Family",
+                prayerLetter: "https://github.com/nbcknoxville-ai/missionary-map/blob/main/prayer-letters/brown-latest.pdf"
+            },
+            {
+                id: 4,
+                name: "Bobby & Starla Stewart",
+                country: "United States (Washington D.C.)",
+                region: "North America",
+                lat: 38.9072,
+                lng: -77.0369,
+                ministry: "Government & Chaplaincy",
+                supportLevel: "Full",
+                photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/stewart-family.jpg",
+                bio: "The Stewart Family ministers to the U.S. Government, providing spiritual guidance and support to those serving in our nation's capital.",
+                familyName: "The Stewart Family",
+                prayerLetter: "https://github.com/nbcknoxville-ai/missionary-map/blob/main/prayer-letters/stewart-latest.pdf"
+            },
+            {
+                id: 5,
+                name: "Rocky & Deborah Shelton",
+                country: "United States",
+                region: "North America",
+                lat: 37.0902,
+                lng: -95.7129,
+                ministry: "Women's Ministry",
+                supportLevel: "Full",
+                photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/shelton-family.jpg",
+                bio: "The Shelton Family leads Quiet Heart Women's Mission, ministering to women and providing spiritual encouragement and support across the nation.",
+                familyName: "The Shelton Family",
+                prayerLetter: "https://github.com/nbcknoxville-ai/missionary-map/blob/main/prayer-letters/shelton-latest.pdf"
+            },
+            {
+                id: 6,
+                name: "Jeremy & Michelle Blanz",
+                country: "Costa Rica",
+                region: "Latin America",
+                lat: 9.7489,
+                lng: -83.7534,
+                ministry: "Church Planting",
+                supportLevel: "Full",
+                photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/blanz-family.jpg",
+                bio: "The Blanz Family serves as missionaries to Costa Rica, establishing churches and discipling believers in Central America.",
+                familyName: "The Blanz Family",
+                prayerLetter: "https://github.com/nbcknoxville-ai/missionary-map/blob/main/prayer-letters/blanz-latest.pdf"
+            },
+            {
+                id: 7,
+                name: "Justin & Danielle Sauder",
+                country: "Zambia",
+                region: "Africa",
+                lat: -13.1339,
+                lng: 27.8493,
+                ministry: "Church Planting",
+                supportLevel: "Full",
+                photo: "https://raw.githubusercontent.com/nbcknoxville-ai/missionary-map/main/images/sauder-family.jpg",
+                bio: "The Sauder Family ministers in Zambia, Africa, planting churches and sharing the Gospel in communities across this beautiful nation.",
+                familyName: "The Sauder Family",
+                prayerLetter: "https://github.com/nbcknoxville-ai/missionary-map/blob/main/prayer-letters/sauder-latest.pdf"
+            }
+        ];
+
         // Map initialization and functions
         let map, markerLayer, markers = [];
 
         document.addEventListener('DOMContentLoaded', function() {
             initializeMap();
             loadMissionaries();
+            
+            // Close PDF viewer when clicking outside
+            const overlay = document.getElementById('pdfOverlay');
+            if (overlay) {
+                overlay.addEventListener('click', function(e) {
+                    if (e.target === overlay) {
+                        closePdfViewer();
+                    }
+                });
+            }
         });
 
         function initializeMap() {
@@ -583,29 +705,39 @@
             });
         }
 
-function createPopupContent(m) {
-    const supportClass = `support-${m.supportLevel.toLowerCase()}`;
-    
-    // Check if it's a valid Google Drive link
-    const hasValidPrayerLetter = m.prayerLetter && m.prayerLetter.includes('drive.google.com');
-    
-    return `
-        <div class="missionary-popup">
-            <h3>${m.name}</h3>
-            <img src="${m.photo}" alt="${m.name}">
-            <div class="info"><strong>📍 Location:</strong> ${m.country}</div>
-            <div class="info"><strong>🌎 Region:</strong> ${m.region}</div>
-            ${hasValidPrayerLetter ? `
-            <div class="info prayer-letter-link">
-                <strong>📄 <a href="#" onclick="openPdfViewer('${m.prayerLetter}', '${m.name}'); return false;">Latest Prayer Letter</a></strong>
-            </div>
-            ` : ''}
-            <div class="ministry"><strong>✝️ Ministry:</strong> ${m.ministry}</div>
-            <div class="info">${m.bio}</div>
-            <span class="support-level ${supportClass}">${m.supportLevel} Support</span>
-        </div>
-    `;
-}
+        function createPopupContent(m) {
+            const supportClass = `support-${m.supportLevel.toLowerCase()}`;
+            
+            // Check if it's a valid Google Drive link
+            const hasValidPrayerLetter = m.prayerLetter && m.prayerLetter.includes('drive.google.com');
+            
+            // Create a safe JSON string for passing data
+            const missionaryDataJson = JSON.stringify({
+                name: m.name,
+                photo: m.photo,
+                country: m.country,
+                region: m.region,
+                ministry: m.ministry,
+                bio: m.bio
+            }).replace(/"/g, '&quot;');
+            
+            return `
+                <div class="missionary-popup">
+                    <h3>${m.name}</h3>
+                    <img src="${m.photo}" alt="${m.name}">
+                    <div class="info"><strong>📍 Location:</strong> ${m.country}</div>
+                    <div class="info"><strong>🌎 Region:</strong> ${m.region}</div>
+                    ${hasValidPrayerLetter ? `
+                    <div class="info prayer-letter-link">
+                        <strong>📄 <a href="#" onclick='openPdfViewer("${m.prayerLetter}", "${missionaryDataJson}"); return false;'>Latest Prayer Letter</a></strong>
+                    </div>
+                    ` : ''}
+                    <div class="ministry"><strong>✝️ Ministry:</strong> ${m.ministry}</div>
+                    <div class="info">${m.bio}</div>
+                    <span class="support-level ${supportClass}">${m.supportLevel} Support</span>
+                </div>
+            `;
+        }
 
         function loadMissionaries(filteredData = null) {
             markerLayer.clearLayers();
@@ -637,7 +769,7 @@ function createPopupContent(m) {
         function applyFilters() {
             const region = document.getElementById('regionFilter').value;
             const ministry = document.getElementById('ministryFilter').value;
-                       
+            
             let filtered = missionariesData;
 
             if (region !== 'all') {
@@ -646,6 +778,7 @@ function createPopupContent(m) {
             if (ministry !== 'all') {
                 filtered = filtered.filter(m => m.ministry === ministry);
             }
+            
             loadMissionaries(filtered);
         }
 
@@ -660,86 +793,70 @@ function createPopupContent(m) {
             document.getElementById('totalCountries').textContent = new Set(data.map(m => m.country)).size;
             document.getElementById('totalRegions').textContent = new Set(data.map(m => m.region)).size;
         }
+
         function refreshPage() {
-    location.reload(true); // Force reload from server, not cache
-}
-        function openPdfViewer(pdfUrl, missionaryName) {
-    const overlay = document.getElementById('pdfOverlay');
-    const iframe = document.getElementById('pdfIframe');
-    const loading = document.getElementById('pdfLoading');
-    const title = document.getElementById('pdfTitle');
-    
-    // Set title
-    title.textContent = `${missionaryName} - Prayer Letter`;
-    
-    // Show overlay
-    overlay.classList.add('active');
-    
-    // Show loading
-    loading.style.display = 'block';
-    iframe.style.display = 'none';
-    
-    // Load PDF in iframe
-    iframe.src = pdfUrl;
-    
-    // Hide loading when iframe loads
-    iframe.onload = function() {
-        loading.style.display = 'none';
-        iframe.style.display = 'block';
-    };
-}
-
-function closePdfViewer() {
-    const overlay = document.getElementById('pdfOverlay');
-    const iframe = document.getElementById('pdfIframe');
-    
-    overlay.classList.remove('active');
-    iframe.src = ''; // Clear iframe
-}
-
-// Close PDF viewer when clicking outside the container
-document.addEventListener('DOMContentLoaded', function() {
-    const overlay = document.getElementById('pdfOverlay');
-    overlay.addEventListener('click', function(e) {
-        if (e.target === overlay) {
-            closePdfViewer();
+            location.reload(true);
         }
-    });
-});
+
+        function openPdfViewer(pdfUrl, missionaryData) {
+            const overlay = document.getElementById('pdfOverlay');
+            const iframe = document.getElementById('pdfIframe');
+            const loading = document.getElementById('pdfLoading');
+            const title = document.getElementById('pdfTitle');
+            const infoPanel = document.getElementById('pdfInfoPanel');
+            
+            // Parse missionary data
+            const missionary = typeof missionaryData === 'string' ? 
+                JSON.parse(missionaryData) : missionaryData;
+            
+            // Set title
+            title.textContent = `${missionary.name} - Prayer Letter`;
+            
+            // Build info panel content
+            infoPanel.innerHTML = `
+                <h4>${missionary.name}</h4>
+                <img src="${missionary.photo}" alt="${missionary.name}">
+                <div class="pdf-info-item">
+                    <strong>📍 Location:</strong>
+                    ${missionary.country}
+                </div>
+                <div class="pdf-info-item">
+                    <strong>🌎 Region:</strong>
+                    ${missionary.region}
+                </div>
+                <div class="pdf-ministry-box">
+                    <strong>✝️ Ministry:</strong>
+                    ${missionary.ministry}
+                </div>
+                <div class="pdf-info-item">
+                    ${missionary.bio}
+                </div>
+            `;
+            
+            // Show overlay
+            overlay.classList.add('active');
+            
+            // Show loading
+            loading.style.display = 'block';
+            iframe.style.display = 'none';
+            
+            // Load PDF in iframe
+            iframe.src = pdfUrl;
+            
+            // Hide loading when iframe loads
+            iframe.onload = function() {
+                loading.style.display = 'none';
+                iframe.style.display = 'block';
+            };
+        }
+
+        function closePdfViewer() {
+            const overlay = document.getElementById('pdfOverlay');
+            const iframe = document.getElementById('pdfIframe');
+            
+            overlay.classList.remove('active');
+            iframe.src = '';
+        }
     </script>
-        <!-- PDF Viewer Overlay -->
-<div id="pdfOverlay" class="pdf-overlay">
-    <div class="pdf-container">
-        <div class="pdf-header">
-            <h3 id="pdfTitle">Prayer Letter</h3>
-            <button class="pdf-close-btn" onclick="closePdfViewer()">✕ Close</button>
-        </div>
-        <div class="pdf-loading" id="pdfLoading">Loading PDF...</div>
-        <iframe id="pdfIframe" class="pdf-iframe" style="display:none;"></iframe>
-    </div>
-</div>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
