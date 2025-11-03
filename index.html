@@ -570,8 +570,11 @@
             });
         }
 
-       function createPopupContent(m) {
+   function createPopupContent(m) {
     const supportClass = `support-${m.supportLevel.toLowerCase()}`;
+    // Encode the PDF URL for the viewer
+    const pdfViewerUrl = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(m.prayerLetter)}`;
+    
     return `
         <div class="missionary-popup">
             <h3>${m.name}</h3>
@@ -579,7 +582,7 @@
             <div class="info"><strong>📍 Location:</strong> ${m.country}</div>
             <div class="info"><strong>🌎 Region:</strong> ${m.region}</div>
             <div class="info prayer-letter-link">
-                <strong>📄 <a href="${m.prayerLetter}" target="_blank" rel="noopener noreferrer">Latest Prayer Letter</a></strong>
+                <strong>📄 <a href="${pdfViewerUrl}" target="_blank" rel="noopener noreferrer">Latest Prayer Letter</a></strong>
             </div>
             <div class="ministry"><strong>✝️ Ministry:</strong> ${m.ministry}</div>
             <div class="info">${m.bio}</div>
@@ -645,6 +648,7 @@
 </body>
 
 </html>
+
 
 
 
