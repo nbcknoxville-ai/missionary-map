@@ -570,11 +570,8 @@
             });
         }
 
-  function createPopupContent(m) {
+function createPopupContent(m) {
     const supportClass = `support-${m.supportLevel.toLowerCase()}`;
-    
-    // Check if prayer letter exists and is not a placeholder GitHub link
-    const hasPrayerLetter = m.prayerLetter && !m.prayerLetter.includes('github.com');
     
     return `
         <div class="missionary-popup">
@@ -582,11 +579,9 @@
             <img src="${m.photo}" alt="${m.name}">
             <div class="info"><strong>📍 Location:</strong> ${m.country}</div>
             <div class="info"><strong>🌎 Region:</strong> ${m.region}</div>
-            ${hasPrayerLetter ? `
             <div class="info prayer-letter-link">
-                <strong>📄 <a href="${m.prayerLetter}" onclick="window.open('${m.prayerLetter}', '_blank'); return false;">Latest Prayer Letter</a></strong>
+                <strong>📄 <a href="${m.prayerLetter}" target="_blank" rel="noopener noreferrer">Latest Prayer Letter</a></strong>
             </div>
-            ` : ''}
             <div class="ministry"><strong>✝️ Ministry:</strong> ${m.ministry}</div>
             <div class="info">${m.bio}</div>
             <span class="support-level ${supportClass}">${m.supportLevel} Support</span>
@@ -651,6 +646,7 @@
 </body>
 
 </html>
+
 
 
 
